@@ -1,0 +1,54 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  securityRealm:
+    local:
+      users:
+       - id: "${USER_ID}"
+         password: "${USER_PW}"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+        - usernamePassword:
+            id: github_creds
+            username: "${GITHUB_USERNAME}"
+            password: "${GITHUB_PAT}"
+
+jobs:
+  - script: >
+      pipelineJob('pipelineJob') {
+          description("pipeline job")
+          properties {
+              githubProjectUrl('https://github.com${GITHUB_ADDRESS}')
+              pipelineTriggers {
+                  triggers {
+                      githubPush()
+                  }
+              }
+              disableConcurrentBuilds {
+                   abortPrevious(false)
+              }
+          }
+          logRotator {
+              numToKeep(30)
+          }
+          definition {
+              cpsScm {
+                  scm {
+                      git {
+                           branch('')
+                           remote {
+                                  url('https://github.com${GITHUB_ADDRESS}')
+                                  credentials('github_creds')
+                           }
+                      }
+                  }
+                  lightweight(true)
+                  scriptPath('jenkins/Jenkinsfile')
+              }
+          }
+      }

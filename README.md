@@ -1,2 +1,9 @@
 # Terraform-AWS-REST-API-with-Jenkins-and-Docker-Example
-Example template project that uses Terraform (AWS), REST API, Docker and Jenkins
+
+Terraform is used to set up the app (backend/frontned) and Jenkins. It is responsible of creating, managing and destroying the infrastructure.
+
+Jenkins is used as the (CI/)CD tool. Rebuild the app on pushes to GitHub repository.
+
+App consists of backend and frontend as a REST API that can be hosted in different origins.
+
+Information regarding used technologies can be found in respective directories.

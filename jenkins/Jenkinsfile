@@ -1,0 +1,38 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Build') {
+            steps {
+                script{
+                    try{
+                        sh "echo \"${KEY_PAIR_CONTENT}\" > temp"
+                        sh "chmod 400 temp"
+
+                        def connect = "ssh -o StrictHostKeyChecking=no -i temp ${SERVER_IP_ADDRESS} -l ubuntu -tt"
+
+                        def stopAndRemoveContainerAndImage = { String containerName -> 
+                            sh "${connect} sudo docker stop $containerName || true"
+                            sh "${connect} sudo docker rm $containerName || true"
+                            sh "${connect} sudo docker rmi $containerName || true"
+                        }
+
+                        def isSecure = { Boolean isSecure ->
+                            return (isSecure == "true" ? 'https' : 'http')
+                        }
+
+                        stopAndRemoveContainerAndImage('frontend')
+                        stopAndRemoveContainerAndImage('backend')
+
+                        sh "${connect} sudo docker build --no-cache -t backend --build-arg GIT_USERNAME=${GITHUB_USERNAME} --build-arg GIT_PAT=${GITHUB_PAT} /var/www/app/app/backend"
+                        sh "${connect} sudo docker build --no-cache -t frontend --build-arg GIT_USERNAME=${GITHUB_USERNAME} --build-arg GIT_PAT=${GITHUB_PAT} /var/www/app/app/frontend"
+                        
+                        sh "${connect} sudo docker run -d --name backend -p $BACKEND_PORT:3000 --env FRONTEND_ADDRESS=${isSecure(IS_FRONTEND_SECURE)}://$SERVER_IP_ADDRESS:$FRONTEND_PORT backend"
+                        sh "${connect} sudo docker run -d --name frontend -p $FRONTEND_PORT:3000 --env NEXT_PUBLIC_BACKEND_ADDRESS=${isSecure(IS_BACKEND_SECURE)}://$SERVER_IP_ADDRESS:$BACKEND_PORT frontend"
+                    } finally {
+                        sh "rm temp"
+                    }
+                }
+            }
+        }
+    }
+}
