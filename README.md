@@ -1,6 +1,6 @@
 # Terraform-AWS-REST-API-with-Jenkins-and-Docker-Example
 
-Terraform is used to set up the app (backend/frontned) and Jenkins. It is responsible of creating, managing and destroying the infrastructure.
+Terraform is used to set up the app (backend/frontned) and Jenkins. It is responsible of creating, managing and destroying the infrastructure. It creates an EC2 instance, and runs the app and Jenkins in the instance as Docker containers.
 
 Jenkins is used as the (CI/)CD tool. Rebuilds the app on pushes to GitHub repository.
 
