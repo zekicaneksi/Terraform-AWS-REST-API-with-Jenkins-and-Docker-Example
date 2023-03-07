@@ -2,7 +2,7 @@
 
 ## Required environment variables
 ```
-NEXT_PUBLIC_BACKEND_ADDRESS="http://localhost:3000"
+NEXT_PUBLIC_BACKEND_ADDRESS=http://localhost:3000
 ```
 
 ## Docker
