@@ -2,7 +2,7 @@
 
 Terraform is used to set up the app (backend/frontned) and Jenkins. It is responsible of creating, managing and destroying the infrastructure.
 
-Jenkins is used as the (CI/)CD tool. Rebuild the app on pushes to GitHub repository.
+Jenkins is used as the (CI/)CD tool. Rebuilds the app on pushes to GitHub repository.
 
 App consists of backend and frontend as a REST API that can be hosted in different origins.
 
