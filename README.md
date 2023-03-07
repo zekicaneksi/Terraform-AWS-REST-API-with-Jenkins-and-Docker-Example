@@ -6,4 +6,4 @@ Jenkins is used as the (CI/)CD tool. Rebuilds the app on pushes to GitHub reposi
 
 App consists of backend and frontend as a REST API that can be hosted in different origins.
 
-Information regarding used technologies can be found in respective directories.
+Information regarding used technologies can be found in their respective directories.
