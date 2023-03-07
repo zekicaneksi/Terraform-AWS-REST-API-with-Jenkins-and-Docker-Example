@@ -6,4 +6,4 @@ AWS CLI must be installed and credentials must be configured for Terraform to be
 
 ### Note
 
-It can take a few minutes for EC2 to set up and Docker containers.
+It can take a few minutes for EC2 to set up and run Docker containers.
