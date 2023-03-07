@@ -10,4 +10,7 @@ Project is configured to be used with a private repository, but with the deletio
 
 Information regarding used technologies can be found in their respective directories.
 
-To get this project running, just go to the `terraform` folder, follow the instructions and that's all.
+### To get this project running
+- Change both apps' (frontend/backend) git repository addresses in their Docker files to your repository.
+- Follow the instructions in the `terraform` folder.
+<br>That's all.
