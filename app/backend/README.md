@@ -2,7 +2,7 @@
 
 ## Required environment variables
 ```
-FRONTEND_ADDRESS="http://localhost:80"
+FRONTEND_ADDRESS=http://localhost:80
 ```
 
 ## To start backend
