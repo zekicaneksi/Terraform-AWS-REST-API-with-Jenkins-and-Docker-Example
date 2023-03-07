@@ -26,7 +26,7 @@ jenkins
 ## Important Note
 
 After Jenkins is set up, a webhook should be created with such a payload url: `http://my.ip.add.ress:portNumber/github-webhook/`.<br>
-The content type of the webhook must be `application/json`
+The content type of the webhook must be `application/json`, and no `secret` needed.
 
 For the webhook to work and trigger the pipeline; after Jenkins is setup, once, a build must successfully run manually. The reason, i'm not sure. Sources;
 - https://stackoverflow.com/a/67132578
