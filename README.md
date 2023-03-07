@@ -6,4 +6,6 @@ Jenkins is used as the (CI/)CD tool. Rebuilds the app on pushes to GitHub reposi
 
 App consists of backend and frontend as a REST API that can be hosted in different origins.
 
+Project is configured to be used with a private repository, but with the deletion of a few lines, can be used with public repositories.
+
 Information regarding used technologies can be found in their respective directories.
