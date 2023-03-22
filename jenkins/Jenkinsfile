@@ -19,6 +19,8 @@ pipeline {
                         def isSecure = { Boolean isSecure ->
                             return (isSecure == "true" ? 'https' : 'http')
                         }
+                        
+                        sh "${connect} sudo docker system prune -f"
 
                         stopAndRemoveContainerAndImage('frontend')
                         stopAndRemoveContainerAndImage('backend')
